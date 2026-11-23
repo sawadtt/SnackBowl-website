@@ -7,8 +7,9 @@ import ProductCard from './ProductCard.vue'
 const props = defineProps({ selected: { type: String, required: true } })
 defineEmits(['select', 'add'])
 
+const bestsellers = menu.filter(product => product.featured)
 const products = computed(() => props.selected === 'All items'
-  ? [...menu.filter(product => product.featured), ...menu.filter(product => !product.featured)]
+  ? menu.filter(product => !product.featured)
   : menu.filter(product => product.category === props.selected),
 )
 </script>
@@ -16,13 +17,17 @@ const products = computed(() => props.selected === 'All items'
 <template>
   <section id="menu" class="section menu-section shell" aria-labelledby="menu-title">
     <div class="section-heading">
-      <div>
-        <p class="eyebrow">The Snack Bowl menu</p>
-        <h2 id="menu-title">{{ selected === 'All items' ? 'Bestsellers' : selected }}</h2>
-      </div>
-      <p v-if="products.some(product => product.image)" class="image-note">Illustrative product images</p>
+      <h2 id="menu-title">{{ selected === 'All items' ? 'Menu' : selected }}</h2>
+      <p class="menu-price-note">Prices and offers as listed on the Swiggy and Zomato menu.</p>
     </div>
     <CategoryFilters :selected="selected" @select="$emit('select', $event)" />
+    <template v-if="selected === 'All items' && bestsellers.length">
+      <h3 class="menu-group-title">Bestsellers</h3>
+      <div class="product-grid">
+        <ProductCard v-for="product in bestsellers" :key="product.id" :product="product" @add="$emit('add', $event)" />
+      </div>
+      <h3 v-if="products.length" class="menu-group-title">More from the menu</h3>
+    </template>
     <div v-if="products.length" class="product-grid">
       <ProductCard v-for="product in products" :key="product.id" :product="product" @add="$emit('add', $event)" />
     </div>

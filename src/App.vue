@@ -32,7 +32,7 @@ function add(product) {
       <HeroSection @browse="selected = 'All items'" />
       <BestsellersSection :selected="selected" @select="selected = $event" @add="add" />
       <CategoriesSection @select="selected = $event" />
-      <OffersSection />
+      <OffersSection @browse="selected = 'All items'" />
       <HowToOrderSection />
     </main>
     <FooterSection @browse="selected = 'All items'" />
