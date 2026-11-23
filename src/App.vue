@@ -2,7 +2,8 @@
 import { computed, ref } from 'vue'
 import { ShoppingBag } from '@lucide/vue'
 import Navbar from './components/Navbar.vue'
-import HeroSection from './components/HeroSection.vue'
+// Uncomment this import and the HeroSection below to restore the homepage hero.
+// import HeroSection from './components/HeroSection.vue'
 import MenuSection from './components/MenuSection.vue'
 import OffersSection from './components/OffersSection.vue'
 import HowToOrderSection from './components/HowToOrderSection.vue'
@@ -31,7 +32,7 @@ function changeMenuQuantity(product, delta) {
   <div id="home" :class="{ 'has-mobile-cart': count }">
     <Navbar :count="count" @open-cart="drawer.open()" @browse="menuSection.reset()" />
     <main id="main" tabindex="-1">
-      <HeroSection @browse="menuSection.reset()" />
+      <!-- <HeroSection @browse="menuSection.reset()" /> -->
       <MenuSection ref="menuSection" :quantities="quantities" :max-quantity="maxQuantity" @change="changeMenuQuantity" />
       <OffersSection @browse="menuSection.reset()" />
       <HowToOrderSection />
