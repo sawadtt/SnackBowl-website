@@ -1,7 +1,7 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue'
 import { MapPin, Search, X } from '@lucide/vue'
-import { categories, menu } from '../data/menu.js'
+import { categories, heroImage as bannerImage, menu } from '../data/menu.js'
 import CategoryFilters from './CategoryFilters.vue'
 import ProductCard from './ProductCard.vue'
 
@@ -17,7 +17,6 @@ const query = ref('')
 const searchInput = ref(null)
 const filters = ref(null)
 const results = ref(null)
-const bannerImage = `${import.meta.env.BASE_URL}images/snack-bowl-menu-banner.webp`
 
 const categoryGroups = categories.map(name => ({
   name,
@@ -69,7 +68,7 @@ defineExpose({ reset })
           <p class="menu-banner-detail">Loaded fries, shawarma and more for pickup or delivery.</p>
         </div>
         <div class="menu-banner-media">
-          <img :src="bannerImage" alt="" width="1040" height="1040" loading="lazy" decoding="async" />
+          <img :src="bannerImage" alt="" width="1100" height="733" loading="lazy" decoding="async" />
         </div>
       </div>
       <div class="menu-tools">
