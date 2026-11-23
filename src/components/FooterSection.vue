@@ -1,5 +1,6 @@
 <script setup>
 import { contactNumber } from '../data/menu.js'
+import logo from '../assets/images/SB_POSITIVE.png'
 defineEmits(['browse'])
 </script>
 
@@ -7,7 +8,9 @@ defineEmits(['browse'])
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div>
-        <a class="wordmark" href="#home">Snack <span>Bowl</span></a>
+        <a class="brand-mark" href="#home">
+          <img :src="logo" alt="Snack Bowl home" width="320" height="309" loading="lazy" />
+        </a>
         <p>Kottakkal, Kerala</p>
       </div>
       <nav aria-label="Footer navigation">

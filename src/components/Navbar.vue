@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Menu, ShoppingBag, X } from '@lucide/vue'
+import logo from '../assets/images/SB_POSITIVE.png'
 
 defineProps({ count: { type: Number, required: true } })
 defineEmits(['open-cart', 'browse'])
@@ -17,7 +18,9 @@ function closeOnEscape() {
 <template>
   <header class="site-header" @keydown.esc="closeOnEscape">
     <div class="shell header-inner">
-      <a class="wordmark" href="#home" @click="expanded = false">Snack <span>Bowl</span></a>
+      <a class="brand-mark" href="#home" @click="expanded = false">
+        <img :src="logo" alt="Snack Bowl home" width="320" height="309" />
+      </a>
       <nav id="main-navigation" class="main-nav" :class="{ 'is-open': expanded }" aria-label="Main navigation">
         <a href="#home" @click="expanded = false">Home</a>
         <a href="#menu" @click="expanded = false; $emit('browse')">Menu</a>
